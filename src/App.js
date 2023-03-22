@@ -3,16 +3,18 @@ import freeCodeCampLogo from './imagenes/logo.png'
 import Boton from './componentes/Boton.js'
 import Pantalla from './componentes/Pantalla';
 import BotonClear from './componentes/BotonClear';
-import { useState } from 'react';
+import BotonFormulas from './componentes/BotonFormulas'
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { evaluate, or } from 'mathjs'
+import { wait } from '@testing-library/user-event/dist/utils';
 
 
 function App() {
 
   const [input, setInput] = useState('');
+  const [controlFormulasEjecutado, setControlFormulasEjecutado] = useState(false);
 
   const agregarInput = val =>{
-    console.log(input)
     if(!isNaN(input.charAt(input.length-1)) && val === '𝜋'){
       setInput(input + '+' + 3.14159265359);
     }
@@ -22,10 +24,13 @@ function App() {
     else if(isNaN(input.charAt(input.length-1)) && val === '𝜋'){
       setInput(input + 3.14159265359);
     }
-    else if(isNaN(input.charAt(input.length-1)) && isNaN(val) && val !== "√"|| input.charAt(input.length-1) === '.' && val !== "√"){
+    else if(isNaN(input.charAt(input.length-1)) && isNaN(val) && val !== "√"|| input.charAt(input.length-1) === '.' && isNaN(val) && val !== "√"){
       setInput(input.substring(0,input.length-1) + val);
     }
-    else if(!isNaN(input.charAt(input.length-1)) && val === "√"){
+    else if(input.charAt(input.length-1) === '.' && val === "√"){
+      setInput(input.substring(0,input.length-1) + "*" + val);
+    }
+    else if(!isNaN(input.charAt(input.length-1)) && val === "√" && input !== ""){
       setInput(input + "*" + val);
     }
     else{
@@ -59,6 +64,22 @@ function App() {
       alert("Por favor ingrese valores para realizar los calculos")
     }
   };
+
+  const controlFormula = val =>{
+    if(val === 'At'){
+      setInput('A=(b*h)/2');
+      setControlFormulasEjecutado(true);
+    }
+  }
+
+  useEffect(()=>{
+    if(controlFormulasEjecutado){
+      let b = input.search('b');
+      console.log(b);
+      setControlFormulasEjecutado(false);
+    }
+  },[controlFormulasEjecutado]);
+
 
   return (
     <div className="App">
@@ -101,6 +122,15 @@ function App() {
           <Boton manejarClic={agregarInput}>𝜋</Boton>
         </div>
         <div className='fila'><BotonClear manejarClear={() => setInput('')}>Limpiar</BotonClear></div>
+      </div>
+      <div className='titulos-formulas-contenedor'>
+        <h2 className='titulos-formulas'>Geometria</h2>
+        <ul>
+          <h3>Areas:</h3>
+          <li><BotonFormulas formulaClick={controlFormula} formula='At'/> Área del triángulo: A = (b(base)) * h(altura)) / 2</li>
+          <li></li>
+          <li></li>
+        </ul>
       </div>
     </div>
   );
