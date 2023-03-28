@@ -1,4 +1,5 @@
 import React from "react";
+import '../css/BotonFormulas.css'
 
 function BotonFormulas(props){
 

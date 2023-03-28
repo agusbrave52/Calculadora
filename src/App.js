@@ -4,17 +4,40 @@ import Boton from './componentes/Boton.js'
 import Pantalla from './componentes/Pantalla';
 import BotonClear from './componentes/BotonClear';
 import BotonFormulas from './componentes/BotonFormulas'
-import { useEffect, useState, useCallback, useRef } from 'react';
-import { evaluate, or } from 'mathjs'
-import { wait } from '@testing-library/user-event/dist/utils';
+// import BarraEleccion from './componentes/BarraEleccion';
+// import PantallaEleccion from './componentes/PantallaEleccion';
+import { useEffect, useState } from 'react';
+import { evaluate } from 'mathjs'
 
 
 function App() {
 
   const [input, setInput] = useState('');
-  const [controlFormulasEjecutado, setControlFormulasEjecutado] = useState(false);
+  const [controlFormulasEjecutado, setControlFormulasEjecutado] = useState('');
+  const [controlTerminado, setControlTerminado] = useState(false);
 
   const agregarInput = val =>{
+    console.log(controlFormulasEjecutado)
+    //-------------------------INPUTS FORMULAS--------------------------------------
+    if(controlTerminado !== true){
+      if(controlFormulasEjecutado === 'At' && !isNaN(val) ){
+        if(input.search('b') !== -1){
+          console.log(input);
+          setInput(input.replace('b', val));
+          return;
+        }
+        else if(input.search('h') !== -1){
+          setInput(input.replace('h', val));
+          setControlTerminado(true);
+          return;
+        }
+      }
+    }
+
+
+
+    //----------------------INPUTS COMUNES------------------------------------------
+
     if(!isNaN(input.charAt(input.length-1)) && val === '𝜋'){
       setInput(input + '+' + 3.14159265359);
     }
@@ -37,6 +60,8 @@ function App() {
       setInput(input + val);
     }
   };
+
+
 
   const buscarValorRaiz = (texto) =>{
     texto = texto.substring(texto.indexOf("√")+1, texto.length)
@@ -65,30 +90,37 @@ function App() {
     }
   };
 
+
+  // const buscarValorFormula = (val) =>{
+  //   for(let i = 0; i < val.length; i++){
+      
+  //   }
+  // }
+
   const controlFormula = val =>{
     if(val === 'At'){
-      setInput('A=(b*h)/2');
-      setControlFormulasEjecutado(true);
+      setInput('(b*h)/2');
+      setControlFormulasEjecutado('At')
+      setControlTerminado(false);
     }
   }
 
   useEffect(()=>{
-    if(controlFormulasEjecutado){
-      let b = input.search('b');
-      console.log(b);
-      setControlFormulasEjecutado(false);
+    if(controlTerminado === true){
+      setInput((evaluate(input)).toString());
+      setControlFormulasEjecutado('');
     }
-  },[controlFormulasEjecutado]);
+  },[controlTerminado]);
 
 
   return (
     <div className="App">
-      <div className='freecodecamp-logo-contenedor'>
+      {/* <div className='freecodecamp-logo-contenedor'>
         <img 
           src={freeCodeCampLogo}
           className='freecodecamp-logo'
           alt='Logo de freeCodeCamp' />
-      </div>
+      </div> */}
       <div className='contenedor-calculadora'>
 
         <Pantalla input={input} />
@@ -123,6 +155,8 @@ function App() {
         </div>
         <div className='fila'><BotonClear manejarClear={() => setInput('')}>Limpiar</BotonClear></div>
       </div>
+      {/* <BarraEleccion/>
+      <PantallaEleccion/> */}
       <div className='titulos-formulas-contenedor'>
         <h2 className='titulos-formulas'>Geometria</h2>
         <ul>
