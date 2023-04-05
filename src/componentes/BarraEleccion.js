@@ -1,38 +1,45 @@
 import React from "react";
+import { Fragment } from "react";
 import { Link } from "react-router-dom";
+import '../css/BarraEleccion.css';
+import PantallaEleccion from "./PantallaEleccion";
 
-const BarraEleccion = ({ selected }) => {
-  if(selected === 'Inicio'){
+const BarraEleccion = ({ seleccion, controlFormula}) => {
+  if(seleccion === 'Inicio'){
     return(
       <nav>
         <ul>
-          <li>
-            <Link to="/opcion1">Geometria</Link>
+          <li className="links">
+            <Link to="/Geometria">Geometria</Link>
           </li>
-          <li>
-            <Link to="/opcion2">Proximamente</Link>
+          <li className="links">
+            <Link to="/Inicio">Proximamente</Link>
           </li>
         </ul>
       </nav>
     );
   }
-  else if(selected === 'Geometria'){
+  if(seleccion === 'Geometria'){
     return(
+      <Fragment>
       <nav>
         <ul>
-          <li>
+          <li className="links">
             <Link to="/Inicio">Inicio</Link>
           </li>
-          <li>
-            <Link to="/opcion1">Areas</Link>
+          <li className="links" >
+            <Link to="/Areas">Areas</Link>
           </li>
-          <li>
-            <Link to="/opcion2">Perimetros</Link>
+          <li className="links">
+            <Link to="/Perimetros">Perimetros</Link>
           </li>
         </ul>
       </nav>
+      <PantallaEleccion control={controlFormula} />
+      </Fragment>
     );
   }
+  
 }
 
 export default BarraEleccion

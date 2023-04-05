@@ -1,10 +1,14 @@
 import React from "react";
 import '../css/BotonFormulas.css'
+import Button from 'react-bootstrap/Button';
 
 function BotonFormulas(props){
 
   return(
-    <button onClick={() => props.formulaClick(props.formula)}>Implementar</button>
+    <>
+    <Button variant="primary" onClick={() => props.formulaClick(props.formula)}>Implementar</Button>
+    </>
+    
   );
 }
 

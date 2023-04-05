@@ -1,0 +1,14 @@
+a{
+    color: aliceblue ;
+    text-decoration: none;
+}
+li.links{
+    display: inline-flex;
+    margin: 0 1rem;
+    font-size: xx-large;
+    font-family: monospace;
+}
+nav{
+    background-color: rgba(214, 114, 0, 0.818);
+    width: 100%;
+}
