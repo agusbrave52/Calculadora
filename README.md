@@ -1,70 +1,122 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# 🧮 Calculadora Brave
+ 
+Calculadora web desarrollada con **React 18**, desplegada automáticamente en **GitHub Pages** via GitHub Actions.
+ 
+> 🔧 **Proyecto a mejorar** — funcional en su estado actual, con margen para seguir creciendo.
+ 
+🌐 **Demo en vivo:** [agusbrave52.github.io/Calculadora](https://agusbrave52.github.io/Calculadora/)
+ 
+---
+ 
+## 📋 Descripción
+ 
+Aplicación de calculadora construida con React como ejercicio de práctica con el ecosistema moderno de JavaScript. Utiliza la librería `mathjs` para el procesamiento de expresiones matemáticas y `react-bootstrap` para los componentes visuales.
+ 
+---
+ 
+## ✨ Funcionalidades
+ 
+- ➕➖✖️➗ Operaciones aritméticas básicas
+- 🧠 Evaluación de expresiones matemáticas con **mathjs**
+- 📱 Diseño responsive con Bootstrap 5
+- 🔀 Enrutamiento con React Router DOM
+ 
+---
+ 
+## 🛠️ Tecnologías y dependencias
+ 
+| Paquete | Versión | Uso |
+|---|---|---|
+| React | 18.2 | Framework principal |
+| React DOM | 18.2 | Renderizado en el navegador |
+| React Router DOM | 6.9 | Enrutamiento entre vistas |
+| Bootstrap | 5.2 | Estilos y componentes UI |
+| React Bootstrap | 2.7 | Componentes Bootstrap para React |
+| mathjs | 11.7 | Motor de evaluación matemática |
+| gh-pages | 5.0 | Deploy automático a GitHub Pages |
+ 
+---
+ 
+## 📁 Estructura del proyecto
+ 
+```
+Calculadora/
+├── public/
+├── src/
+├── static/
+├── .github/
+│   └── workflows/       ← CI/CD con GitHub Actions
+├── package.json
+├── yarn.lock
+└── .gitignore
+```
+ 
+---
+ 
+## 🚀 Instalación y uso local
+ 
+Requiere **Node.js** instalado.
+ 
+1. Cloná el repositorio:
+   ```bash
+   git clone https://github.com/agusbrave52/Calculadora.git
+   cd Calculadora
+   ```
+ 
+2. Instalá las dependencias:
+   ```bash
+   npm install
+   ```
+ 
+3. Iniciá el servidor de desarrollo:
+   ```bash
+   npm start
+   ```
+ 
+4. Abrí [http://localhost:3000](http://localhost:3000) en el navegador.
+ 
+---
+ 
+## 📦 Scripts disponibles
+ 
+| Comando | Descripción |
+|---|---|
+| `npm start` | Inicia el servidor de desarrollo en `localhost:3000` |
+| `npm run build` | Genera la build de producción en `/build` |
+| `npm test` | Ejecuta los tests en modo interactivo |
+| `npm run deploy` | Construye y despliega en GitHub Pages |
+ 
+---
+ 
+## 🚢 Deploy
+ 
+El proyecto está configurado para desplegarse automáticamente en **GitHub Pages** usando `gh-pages` y un workflow de **GitHub Actions**.
+ 
+Para hacer un deploy manual:
+```bash
+npm run deploy
+```
+ 
+---
+ 
+## 🔮 Mejoras planeadas
+ 
+- [ ] Historial de operaciones
+- [ ] Soporte para teclado físico
+- [ ] Modo científico (raíces, potencias, trigonometría)
+- [ ] Animaciones en los botones
+- [ ] Modo oscuro / claro
+- [ ] Tests unitarios para las operaciones
+ 
+---
+ 
+## 📌 Estado del proyecto
+ 
+🔵 **Funcional, en proceso de mejora** — proyecto personal de práctica con React.
+ 
+---
+ 
+## 👤 Autor
+ 
+**Agustín Brave**
+- GitHub: [@agusbrave52](https://github.com/agusbrave52)
